@@ -1,3 +1,21 @@
+/* =====================================================
+   SCANDAR / DOCTOR PC - Contacto por WhatsApp y correo
+
+   Problema: dentro de la vista previa de Web Lab (que es un
+   marco con restricciones) el clic directo en WhatsApp o en
+   el correo es bloqueado, aunque "clic derecho > abrir en
+   nueva ventana" sí funciona.
+
+   Solución:
+   - Si la página está dentro de un marco (vista previa), el
+     clic abre una ventana propia con los enlaces reales
+     (que se pueden abrir con clic derecho), botones para
+     copiar y un formulario.
+   - Si la página se abre normal (enlace público), el clic
+     funciona de forma nativa. Si el navegador no hace nada
+     (por ejemplo, no hay programa de correo configurado),
+     se muestra la misma ventana como respaldo.
+   ===================================================== */
 (function () {
   var NUMERO = "+54 9 11 6140-0698";
   var WA_BASE = "https://api.whatsapp.com/send?phone=5491161400698";
@@ -5,7 +23,6 @@
   var CORREO = "alejandro.scandar85@gmail.com";
   var ASUNTO = "Consulta desde la web SCANDAR / Doctor PC";
   var GMAIL_URL = "https://mail.google.com/mail/?view=cm&fs=1&to=" + CORREO + "&su=" + encodeURIComponent(ASUNTO);
-  var MAILTO_URL = "mailto:" + CORREO + "?subject=" + encodeURIComponent(ASUNTO);
   var FORM_URL = "https://formsubmit.co/ajax/" + CORREO;
 
   var overlay = null;
@@ -29,7 +46,7 @@
         '<div class="cm-row">' +
           '<strong>WhatsApp</strong><span>' + NUMERO + '</span>' +
           '<div class="cm-actions">' +
-            '<a class="cm-btn cm-wa" id="cm-lnk-wa" href="' + WA_URL + '" target="_blank" rel="noopener">Abrir WhatsApp</a>' +
+            '<a class="cm-btn cm-wa" href="' + WA_URL + '" target="_blank" rel="noopener">Abrir WhatsApp</a>' +
             '<button type="button" class="cm-btn" data-copy="' + NUMERO + '">Copiar número</button>' +
             '<button type="button" class="cm-btn" data-copy="' + WA_BASE + '">Copiar enlace</button>' +
           '</div>' +
@@ -37,12 +54,11 @@
         '<div class="cm-row">' +
           '<strong>Correo electrónico</strong><span>' + CORREO + '</span>' +
           '<div class="cm-actions">' +
-            '<a class="cm-btn" id="cm-lnk-gmail" href="' + GMAIL_URL + '" target="_blank" rel="noopener">Abrir Gmail</a>' +
-            '<a class="cm-btn" id="cm-lnk-mailto" href="' + MAILTO_URL + '">Abrir mi programa de correo</a>' +
+            '<a class="cm-btn" href="' + GMAIL_URL + '" target="_blank" rel="noopener">Abrir Gmail</a>' +
             '<button type="button" class="cm-btn" data-copy="' + CORREO + '">Copiar correo</button>' +
           '</div>' +
         '</div>' +
-        '<p class="cm-tip">Si "Abrir WhatsApp" o "Abrir Gmail" no responden con el clic, hacé <strong>clic derecho &rarr; Abrir en nueva ventana</strong>. El botón del programa de correo solo anda si tenés uno instalado.</p>' +
+        '<p class="cm-tip">Si "Abrir WhatsApp" o "Abrir Gmail" no responden con el clic, hacé <strong>clic derecho &rarr; Abrir en nueva ventana</strong>.</p>' +
         '<form class="cm-form" id="cm-form">' +
           '<h4>O dejame tu mensaje acá</h4>' +
           '<input type="text" id="cm-nombre" placeholder="Tu nombre" required>' +
@@ -59,19 +75,6 @@
     });
     document.getElementById("cm-cerrar").addEventListener("click", cerrar);
     document.getElementById("cm-form").addEventListener("submit", enviar);
-    document.getElementById("cm-form").addEventListener("input", actualizarEnlaces);
-  }
-
-  /* Pasa lo escrito en el formulario al cuerpo de WhatsApp, Gmail y correo */
-  function actualizarEnlaces() {
-    var nombre = document.getElementById("cm-nombre").value;
-    var email = document.getElementById("cm-email").value;
-    var mensaje = document.getElementById("cm-mensaje").value;
-    var hayTexto = nombre || email || mensaje;
-    var texto = "Hola, soy " + nombre + (email ? " (" + email + ")" : "") + ". " + mensaje;
-    document.getElementById("cm-lnk-wa").href = hayTexto ? WA_BASE + "&text=" + encodeURIComponent(texto) : WA_URL;
-    document.getElementById("cm-lnk-gmail").href = hayTexto ? GMAIL_URL + "&body=" + encodeURIComponent(texto) : GMAIL_URL;
-    document.getElementById("cm-lnk-mailto").href = hayTexto ? MAILTO_URL + "&body=" + encodeURIComponent(texto) : MAILTO_URL;
   }
 
   function abrir(modo) {
@@ -83,7 +86,7 @@
       nota.textContent = "Tocá \"Abrir WhatsApp\" o copiá el número. También podés dejarme un mensaje abajo.";
     } else {
       titulo.textContent = "Escribime por correo";
-      nota.textContent = "Elegí cómo escribirme: Gmail, tu programa de correo, o enviame el mensaje desde acá.";
+      nota.textContent = "Elegí cómo escribirme: Gmail, copiar mi correo, o enviame el mensaje desde acá.";
     }
     document.getElementById("cm-estado").textContent = "";
     overlay.classList.add("open");
@@ -143,9 +146,8 @@
         document.getElementById("cm-form").reset();
       })
       .catch(function () {
-        var texto = "Hola, soy " + datos.name + " (" + datos.email + "). " + datos.message;
-        var wa = WA_BASE + "&text=" + encodeURIComponent(texto);
-        var gm = GMAIL_URL + "&body=" + encodeURIComponent(texto);
+        var wa = WA_BASE + "&text=" + encodeURIComponent(datos.message);
+        var gm = GMAIL_URL + "&body=" + encodeURIComponent(datos.message);
         estado.innerHTML = 'No se pudo enviar desde acá. Mandalo por: ' +
           '<a href="' + wa + '" target="_blank" rel="noopener">WhatsApp</a> o ' +
           '<a href="' + gm + '" target="_blank" rel="noopener">Gmail</a> (tu mensaje ya va escrito).';
@@ -188,7 +190,10 @@
     else if (href.indexOf("mailto:") === 0) modo = "correo";
     if (!modo) return;
 
-    if (enMarco()) {
+    /* El correo (mailto:) depende de que la computadora tenga un programa de correo.
+       Si no lo tiene, el sistema muestra un aviso y la página no puede saberlo:
+       por eso el correo SIEMPRE abre la ventana propia. */
+    if (modo === "correo" || enMarco()) {
       e.preventDefault();
       abrir(modo);
     } else {
