@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== SEO ===== -->
+  <title>Sobre mí | SCANDAR / Doctor PC · Villa Devoto</title>
+  <meta name="description" content="Conocé a Alejandro Scandar: gustos, personalidad y valores detrás de SCANDAR / Doctor PC, servicio técnico de PC en Villa Devoto, CABA.">
+  <meta name="keywords" content="Alejandro Scandar, técnico de pc, personalidad, gustos, valores, Doctor PC, Villa Devoto">
+  <meta name="author" content="Alejandro Scandar">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="geo.region" content="AR-C">
+  <meta name="geo.placename" content="Villa Devoto, Ciudad Autónoma de Buenos Aires">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="SCANDAR / Doctor PC">
+  <meta property="og:title" content="Sobre mí | SCANDAR / Doctor PC">
+  <meta property="og:description" content="Gustos, personalidad y valores de Alejandro Scandar.">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- Si la imagen no se encuentra en la raíz, la busca en la carpeta assets/ -->
+  <script>
+    function imgFallback(img) {
+      if (img.getAttribute("data-fb")) return;
+      img.setAttribute("data-fb", "1");
+      img.src = "assets/" + img.getAttribute("src");
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- ===== HEADER / MENÚ FIJO ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="SCANDAR Doctor PC - Inicio">
+        <img src="logo.png" onerror="imgFallback(this)" alt="Logo Doctor PC" width="42" height="42">
+        <span class="brand-text">SCANDAR <small>Doctor PC</small></span>
+      </a>
+
+      <input type="checkbox" id="nav-check" class="nav-check" aria-hidden="true">
+      <label for="nav-check" class="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></label>
+
+      <nav class="nav" aria-label="Menú principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="academico.html">Académico y profesional</a></li>
+          <li><a href="personal.html" class="active" aria-current="page">Personal</a></li>
+          <li><a class="btn-nav" href="https://api.whatsapp.com/send?phone=5491161400698" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== BANNER ===== -->
+    <section class="page-banner">
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Inicio</a> / Personal</p>
+        <h1>La persona detrás de Doctor PC</h1>
+        <p>Mis gustos, mi forma de ser y los valores con los que trabajo todos los días.</p>
+      </div>
+    </section>
+
+    <!-- ===== PRESENTACIÓN ===== -->
+    <section class="section">
+      <div class="container split">
+        <div>
+          <span class="eyebrow" style="color:var(--blue)">Un poco más sobre mí</span>
+          <h2>Hola, soy Alejandro</h2>
+                    <p>Desde siempre me llamó la atención cómo funcionan las computadoras y cómo se arreglan. Lo que empezó como curiosidad hoy es mi trabajo, y lo disfruto: cada equipo es un desafío distinto y cada cliente, una persona a la que quiero dejar conforme.</p>
+          <p>Me gusta explicar las cosas de forma simple, sin tecnicismos, para que cada cliente entienda qué le pasó a su equipo y cómo cuidarlo.</p>
+          <p style="margin-top:18px"><a href="index.html#contacto">Contactame →</a></p>
+        </div>
+        <img src="personal.png" onerror="imgFallback(this)" alt="Ilustración de técnico con auriculares y engranajes" width="400" height="400" style="max-width:340px;margin-inline:auto">
+      </div>
+    </section>
+
+    <!-- ===== GUSTOS ===== -->
+    <section class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Gustos</span>
+          <h2>Lo que me apasiona</h2>
+          <p>Cosas que disfruto dentro y fuera del trabajo.</p>
+        </div>
+                <div class="grid grid-4">
+          <article class="card">
+            <div class="icon">💻</div>
+            <h3>Tecnología</h3>
+            <p>Probar equipos, componentes y novedades del mundo informático.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🔧</div>
+            <h3>Resolver problemas</h3>
+            <p>Encontrar la causa de una falla y dejar todo funcionando.</p>
+          </article>
+          <article class="card">
+            <div class="icon">📚</div>
+            <h3>Aprender</h3>
+            <p>Capacitarme siempre en cosas nuevas: programación, diseño web e inteligencia artificial.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🎧</div>
+            <h3>Música y descanso</h3>
+            <p>Trabajar con buena música y desconectar para volver con energía.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PERSONALIDAD ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Personalidad</span>
+          <h2>Cómo soy y cómo trabajo</h2>
+          <p>Los valores que guían cada servicio.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="icon">🤝</div>
+            <h3>Honestidad</h3>
+            <p>Te digo la verdad sobre el estado de tu equipo y solo hago lo que realmente necesita.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⏱️</div>
+            <h3>Responsabilidad</h3>
+            <p>Cumplo los plazos que acordamos y te mantengo informado durante el trabajo.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🧠</div>
+            <h3>Paciencia</h3>
+            <p>Explico todas las veces que haga falta, sin apuros y sin tecnicismos.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🔍</div>
+            <h3>Detallismo</h3>
+            <p>Reviso cada detalle y dejo el equipo prolijo, limpio y probado.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🔒</div>
+            <h3>Confidencialidad</h3>
+            <p>Tu información personal y tus archivos son privados y los trato con respeto.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🌱</div>
+            <h3>Mejora continua</h3>
+            <p>Siempre estoy aprendiendo para ofrecer mejores soluciones.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="cta-band">
+          <h2>Gracias por visitar mi sitio</h2>
+          <p>Si tu equipo necesita una mano, escribime y lo vemos juntos.</p>
+          <a class="btn btn-wa" href="https://api.whatsapp.com/send?phone=5491161400698&text=Hola%20Doctor%20PC%2C%20vi%20tu%20sitio%20web" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+          <a class="btn btn-ghost" href="mailto:alejandro.scandar85@gmail.com" style="margin-left:8px">Enviar correo</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== BOTÓN FLOTANTE ===== -->
+  <a class="wa-float" href="https://api.whatsapp.com/send?phone=5491161400698" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.2.7 3 .6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="logo.png" onerror="imgFallback(this)" alt="Logo Doctor PC" width="42" height="42">
+          <span class="brand-text">SCANDAR <small>Doctor PC</small></span>
+        </a>
+        <p>Servicio técnico de PC y notebooks en Villa Devoto. Soluciones claras, trabajo prolijo y atención personalizada.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="academico.html">Académico y profesional</a></li>
+          <li><a href="personal.html">Personal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>Av. Gral. Mosconi 4480, Villa Devoto, CABA</li>
+          <li><a href="https://api.whatsapp.com/send?phone=5491161400698" target="_blank" rel="noopener noreferrer">WhatsApp: +54 9 11 6140-0698</a></li>
+          <li><a href="mailto:alejandro.scandar85@gmail.com">alejandro.scandar85@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 SCANDAR / Doctor PC · Todos los derechos reservados</div>
+  </footer>
+
+  <script src="fotos.js"></script>
+  <script src="contacto.js"></script>
+
+</body>
+</html>
